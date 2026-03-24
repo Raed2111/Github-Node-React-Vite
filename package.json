@@ -1,0 +1,20 @@
+{
+  "name": "Github-Node-React-Vite",
+  "version": "1.0.0",
+  "description": "el objetivo es que el alumno cree un repositorio en GitHub, lo clone en su equipo, configure un proyecto con Express y suba correctamente los archivos al repositorio remoto.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Raed2111/Github-Node-React-Vite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Raed2111/Github-Node-React-Vite/issues"
+  },
+  "homepage": "https://github.com/Raed2111/Github-Node-React-Vite#readme"
+}

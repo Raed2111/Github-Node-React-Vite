@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
@@ -6,9 +6,19 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-
+  useEffect(() => {
+    if (count > 10) {
+      alert("El valor máximo es 10");
+      setCount(10);
+    }
+  
+    if (count < 0) {
+      setCount(0);
+    }
+  }, [count]);
   return (
     <>
+    
       <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
@@ -27,6 +37,12 @@ function App() {
         >
           Count is {count}
         </button>
+        <button
+  className="counter"
+  onClick={() => setCount((count) => count - 1)}
+>
+  Decrementar
+</button>
       </section>
 
       <div className="ticks"></div>

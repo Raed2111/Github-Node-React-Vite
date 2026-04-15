@@ -4,131 +4,122 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 
+// MUI
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Typography,
+  Container
+} from '@mui/material'
+
 function App() {
   const [count, setCount] = useState(0)
+
   useEffect(() => {
     if (count > 10) {
-      alert("El valor máximo es 10");
-      setCount(10);
+      alert("El valor máximo es 10")
+      setCount(10)
     }
-  
     if (count < 0) {
-      setCount(0);
+      setCount(0)
     }
-  }, [count]);
+  }, [count])
+
+  // ✅ Array requerido
+  const personas = [
+    { nombre: "Juan", apellido: "Pérez", edad: 25 },
+    { nombre: "Ana", apellido: "López", edad: 16 }, // menor
+    { nombre: "Carlos", apellido: "García", edad: 30 },
+    { nombre: "María", apellido: "Rodríguez", edad: 17 }, // menor
+    { nombre: "Luis", apellido: "Hernández", edad: 22 },
+    { nombre: "Sofía", apellido: "Martínez", edad: 28 },
+  ]
+
   return (
     <>
-    
       <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
           <img src={reactLogo} className="framework" alt="React logo" />
           <img src={viteLogo} className="vite" alt="Vite logo" />
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
+
+        <h1>Get started</h1>
+
         <button
           className="counter"
           onClick={() => setCount((count) => count + 1)}
         >
           Count is {count}
         </button>
+
         <button
-  className="counter"
-  onClick={() => setCount((count) => count - 1)}
->
-  Decrementar
-</button>
+          className="counter"
+          onClick={() => setCount((count) => count - 1)}
+        >
+          Decrementar
+        </button>
       </section>
 
-      <div className="ticks"></div>
+      {/* ✅ TABLA MEJORADA */}
+      <Container maxWidth="md" style={{ marginTop: "40px" }}>
+        <Typography variant="h4" align="center" gutterBottom>
+          Lista de Personas
+        </Typography>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        <TableContainer
+          component={Paper}
+          elevation={6}
+          style={{ borderRadius: "12px", overflow: "hidden" }}
+        >
+          <Table>
+            <TableHead style={{ backgroundColor: "#1976d2" }}>
+              <TableRow>
+                <TableCell style={{ color: "white", fontWeight: "bold" }}>
+                  Nombre
+                </TableCell>
+                <TableCell style={{ color: "white", fontWeight: "bold" }}>
+                  Apellido
+                </TableCell>
+                <TableCell style={{ color: "white", fontWeight: "bold" }}>
+                  Edad
+                </TableCell>
+                <TableCell style={{ color: "white", fontWeight: "bold" }}>
+                  Estado
+                </TableCell>
+              </TableRow>
+            </TableHead>
 
-      <div className="ticks"></div>
+            <TableBody>
+              {personas.map((persona, index) => (
+                <TableRow
+                  key={`${persona.nombre}-${persona.apellido}`}
+                  hover
+                  style={{
+                    backgroundColor:
+                      persona.edad <= 17 ? "#ffebee" : "white"
+                  }}
+                >
+                  <TableCell>{persona.nombre}</TableCell>
+                  <TableCell>{persona.apellido}</TableCell>
+                  <TableCell>{persona.edad}</TableCell>
+                  <TableCell>
+                    {persona.edad <= 17
+                      ? "Menor de edad"
+                      : "Mayor de edad"}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Container>
+
       <section id="spacer"></section>
     </>
   )

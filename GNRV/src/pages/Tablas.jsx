@@ -38,6 +38,7 @@ function Tablas() {
     { nombre: "Luis", apellido: "Hernández", edad: 22 },
     { nombre: "Sofía", apellido: "Martínez", edad: 28 },
   ]
+  
 
   return (
     <>

@@ -1,5 +1,12 @@
+import PerfilResumen from "../components/PerfilResumen";
+
 function Home() {
-  return <h1>Bienvenido a mi aplicación</h1>;
+  return (
+    <div>
+      <h1>Inicio</h1>
+      <PerfilResumen />
+    </div>
+  );
 }
 
 export default Home;
